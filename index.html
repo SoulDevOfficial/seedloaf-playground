@@ -22,7 +22,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, p, a, span, input, button, div, select {
+        h1, h2, h3, h4, p, a, span, input, button, div, select, option {
             color: #ffffff !important;
         }
 
@@ -32,6 +32,7 @@
             gap: 1.25rem;
         }
 
+        /* Sidebar Styling */
         .sidebar-link {
             padding: 0.7rem 1rem;
             transition: all 0.15s ease;
@@ -52,18 +53,54 @@
             border-left: 4px solid oklch(var(--p));
         }
 
-        /* Category Tag Styling */
+        /* Category Tag Styling - Now floated right */
         .plugin-tag {
             font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             font-weight: 800;
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.35rem;
-            background: rgba(255, 255, 255, 0.08);
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.4rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            margin-top: 0.25rem;
+            white-space: nowrap;
+        }
+
+        /* Custom Dark Dropdown */
+        .category-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: oklch(var(--b3));
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-select {
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 2.5rem 0 1.25rem;
+            height: 100%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+
+        /* The Custom Arrow */
+        .category-wrapper::after {
+            content: "▼";
+            font-size: 0.6rem;
+            position: absolute;
+            right: 1rem;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Force dropdown options to be dark so white text is visible */
+        .category-select option {
+            background-color: oklch(var(--b3));
+            padding: 10px;
         }
 
         .divider {
@@ -72,19 +109,6 @@
             margin: 2.5rem 0;
             border: none;
         }
-
-        /* Clean up the select dropdown for the category */
-        .category-select {
-            background-color: transparent;
-            border: none;
-            padding: 0 1rem;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-        
-        /* Remove default arrow in some browsers to keep it clean */
-        select { appearance: none; }
 
         @media (max-width: 1024px) {
             .md-grid-cols-menu-layout {
@@ -130,17 +154,19 @@
             <div class="space-y-6">
                 <h2 class="text-3xl font-bold tracking-tight">Plugins & Mods</h2>
 
-                <div class="join w-full bg-base-200/40 rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                    <select class="category-select join-item border-r border-white/10 bg-base-300/50">
-                        <option>All Categories</option>
-                        <option>Admin Tools</option>
-                        <option>Economy</option>
-                        <option>Game Modes</option>
-                        <option>World Mgmt</option>
-                        <option>Security</option>
-                    </select>
-                    <input class="input input-ghost join-item w-full focus:outline-none" placeholder="Search for plugins..."/>
-                    <button class="btn btn-primary join-item px-12 border-none">Search</button>
+                <div class="join w-full bg-base-200/40 rounded-xl overflow-hidden border border-white/10 shadow-lg h-12">
+                    <div class="category-wrapper join-item">
+                        <select class="category-select">
+                            <option>All Categories</option>
+                            <option>Admin Tools</option>
+                            <option>Economy</option>
+                            <option>Game Modes</option>
+                            <option>World Mgmt</option>
+                            <option>Security</option>
+                        </select>
+                    </div>
+                    <input class="input input-ghost join-item w-full h-full focus:outline-none px-4" placeholder="Search for plugins..."/>
+                    <button class="btn btn-primary join-item h-full px-12 border-none rounded-none">Search</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4">
@@ -149,9 +175,11 @@
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">🔑</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg group-hover:underline">LuckPerms</h4>
-                                <div class="plugin-tag">Admin Tools</div>
-                                <p class="text-xs mt-2 leading-relaxed">Advanced permission management for server administrators.</p>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg group-hover:underline">LuckPerms</h4>
+                                    <div class="plugin-tag">Admin</div>
+                                </div>
+                                <p class="text-xs mt-3 leading-relaxed opacity-70">Advanced permission management for server administrators.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
@@ -161,9 +189,11 @@
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">⭐</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg group-hover:underline">EssentialsX</h4>
-                                <div class="plugin-tag">World Mgmt</div>
-                                <p class="text-xs mt-2 leading-relaxed">The fundamental command and utility suite for Minecraft.</p>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg group-hover:underline">EssentialsX</h4>
+                                    <div class="plugin-tag">World</div>
+                                </div>
+                                <p class="text-xs mt-3 leading-relaxed opacity-70">The fundamental command and utility suite for Minecraft.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
@@ -173,9 +203,11 @@
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">💰</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg group-hover:underline">Vault</h4>
-                                <div class="plugin-tag">Economy</div>
-                                <p class="text-xs mt-2 leading-relaxed">The standard economy API used by most Minecraft shop plugins.</p>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg group-hover:underline">Vault</h4>
+                                    <div class="plugin-tag">Economy</div>
+                                </div>
+                                <p class="text-xs mt-3 leading-relaxed opacity-70">The standard economy API used by most Minecraft shop plugins.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
