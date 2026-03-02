@@ -32,7 +32,6 @@
             gap: 1.25rem;
         }
 
-        /* Sidebar Styling */
         .sidebar-link {
             padding: 0.7rem 1rem;
             transition: all 0.15s ease;
@@ -53,7 +52,6 @@
             border-left: 4px solid oklch(var(--p));
         }
 
-        /* Category Tag Styling - Now floated right */
         .plugin-tag {
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -66,7 +64,6 @@
             white-space: nowrap;
         }
 
-        /* Custom Dark Dropdown */
         .category-wrapper {
             position: relative;
             display: flex;
@@ -84,29 +81,29 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 0.875rem;
-            z-index: 1;
+            z-index: 2;
         }
 
-        /* The Custom Arrow */
         .category-wrapper::after {
             content: "▼";
             font-size: 0.6rem;
             position: absolute;
             right: 1rem;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.6;
+            z-index: 1;
         }
 
-        /* Force dropdown options to be dark so white text is visible */
         .category-select option {
-            background-color: oklch(var(--b3));
-            padding: 10px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 12px;
         }
 
         .divider {
             height: 1px;
             background-color: rgba(255, 255, 255, 0.15);
-            margin: 2.5rem 0;
+            margin: 1.5rem 0 2.5rem 0; /* Adjusted spacing for the header divider */
             border: none;
         }
 
@@ -119,7 +116,7 @@
 </head>
 <body class="min-h-screen relative">
 
-    <div class="bg-base-100 absolute w-full z-10 border-b border-white/5">
+    <div class="bg-base-100 absolute w-full z-10">
         <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6 h-16">
             <a class="flex items-center" href="/dashboard">
                 <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold mr-3">SL</div>
@@ -152,8 +149,10 @@
             </aside>
 
             <div class="space-y-6">
-                <h2 class="text-3xl font-bold tracking-tight">Plugins & Mods</h2>
-                <div class="divider"></div>
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight">Plugins & Mods</h2>
+                    <div class="divider"></div>
+                </div>
 
                 <div class="join w-full bg-base-200/40 rounded-xl overflow-hidden border border-white/10 shadow-lg h-12">
                     <div class="category-wrapper join-item">
@@ -171,7 +170,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4">
-                    
                     <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-all group">
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">🔑</div>
@@ -199,27 +197,12 @@
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
                     </div>
-
-                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-all group">
-                        <div class="flex gap-5">
-                            <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">💰</div>
-                            <div class="flex-1">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-bold text-lg group-hover:underline">Vault</h4>
-                                    <div class="plugin-tag">Economy</div>
-                                </div>
-                                <p class="text-xs mt-3 leading-relaxed opacity-70">The standard economy API used by most Minecraft shop plugins.</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer footer-center bg-base-100 p-8 absolute bottom-0 border-t border-white/5">
+    <footer class="footer footer-center bg-base-100 p-8 absolute bottom-0">
         <div class="max-w-[1280px] flex justify-between items-center w-full px-6">
             <div class="text-left">
                 <p class="font-bold text-lg tracking-tight">Seedloaf.</p>
