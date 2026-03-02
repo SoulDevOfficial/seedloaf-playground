@@ -181,6 +181,8 @@
 </div>
 
 <script>
+    let hasAutoReplied = false;
+
     async function handleSend() {
         const input = document.getElementById('userInput');
         const webhookInput = document.getElementById('webhookInput');
@@ -217,7 +219,8 @@
             console.error(error);
         }
 
-        if (!isDev) {
+        if (!isDev && !hasAutoReplied) {
+            hasAutoReplied = true;
             setTimeout(() => {
                 const autoDiv = document.createElement('div');
                 autoDiv.className = 'message dev-msg';
