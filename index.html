@@ -7,22 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Exact color variables from Seedloaf's RootLayout */
         :root {
-            --b1: 25.33% 0.016 252.42; 
-            --p: 58% 0.233 277.117;    
+            --b1: 25.33% 0.016 252.42; /* base-100 */
+            --p: 58% 0.233 277.117;    /* primary */
+            --bc: 97.807% 0.029 256.847; /* base-content */
         }
         body {
             background-color: oklch(var(--b1));
-            color: oklch(97.807% 0.029 256.847);
+            color: oklch(var(--bc));
+            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         }
-        .grid-menu-layout {
+        /* The specific layout class used in your Loading snippet */
+        .md-grid-cols-menu-layout {
             display: grid;
             grid-template-columns: 336px 1fr;
             gap: 1.25rem;
-            align-items: start;
         }
-        @media (max-width: 1024px) {
-            .grid-menu-layout {
+        @media (max-width: 768px) {
+            .md-grid-cols-menu-layout {
                 grid-template-columns: 1fr;
             }
         }
@@ -36,110 +39,99 @@
                 <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-white mr-3">SL</div>
                 <h3 class="text-xl font-bold tracking-tight">Seedloaf</h3>
             </a>
-            <div class="hidden md:flex items-center gap-4">
-                <a href="#" class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity">Status</a>
-                <a href="#" class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity">Docs</a>
-                <a href="#" class="btn btn-sm btn-primary btn-outline">Discord</a>
+            <div class="hidden md:flex items-center flex-none gap-2">
+                <ul class="menu menu-horizontal items-center px-1 space-x-2">
+                    <li><a href="#" class="btn btn-ghost text-primary">Status</a></li>
+                    <li><a href="#" class="btn btn-ghost text-primary">Documentation</a></li>
+                    <li><a href="#" class="btn p-2 btn-primary btn-outline font-bold">Discord</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="pt-24 pb-40 max-w-[1280px] mx-auto px-6">
-        <div class="grid-menu-layout">
+    <div class="pt-20 pb-40 md:pt-20 md:pb-60 max-w-[1280px] mx-auto px-6">
+        <div class="py-12 md-grid-cols-menu-layout">
             
-            <aside class="w-full">
-                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full font-medium">
-                    <li><a href="/dashboard/console" class="py-3 px-4 rounded-lg">Dashboard</a></li>
-                    <li><a href="/dashboard/files" class="py-3 px-4 rounded-lg">File Manager</a></li>
-                    <li><a href="/dashboard/plugins" class="py-3 px-4 rounded-lg bg-primary/10 text-primary font-bold">Plugin Downloader</a></li>
-                    <li><a href="/dashboard/settings" class="py-3 px-4 rounded-lg text-error/70">Settings</a></li>
+            <aside>
+                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full">
+                    <li><a href="/dashboard/console" class="py-2 flex items-center">Dashboard</a></li>
+                    <li><a href="/dashboard/plugins" class="py-2 flex items-center bg-primary/10 text-primary font-bold">Plugin Downloader</a></li>
+                    <li><a href="/dashboard/settings" class="py-2 flex items-center">Settings</a></li>
                 </ul>
             </aside>
 
-            <section class="space-y-8">
-                <div class="flex flex-col gap-1">
-                    <h2 class="text-3xl font-bold tracking-tight">Plugin Downloader</h2>
-                    <p class="text-sm opacity-50 font-medium">Browse and install plugins directly to your server.</p>
-                </div>
-                
-                <div class="join w-full bg-base-200/50 border border-white/5 rounded-xl overflow-hidden shadow-sm">
-                    <input type="text" placeholder="Search for plugins..." class="input input-ghost join-item w-full focus:bg-base-200 outline-none border-none" />
-                    <button class="btn btn-primary join-item px-10">Search</button>
+            <div class="space-y-8 min-w-0">
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-2xl font-bold">Plugins</h2>
+                    <div class="join w-full bg-base-100">
+                        <input class="input input-bordered join-item w-full bg-transparent focus:outline-none" placeholder="Search for plugins..."/>
+                        <button class="btn btn-primary join-item px-8">Search</button>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
                         <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">🔑</div>
-                            <div class="flex-1 space-y-1">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-bold text-lg leading-tight">LuckPerms</h4>
-                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v5.4</span>
-                                </div>
-                                <p class="text-xs opacity-50 leading-relaxed">Advanced permissions management with a web editor.</p>
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🔑</div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">LuckPerms</h4>
+                                <p class="text-sm opacity-50 mt-1">Advanced permissions management system.</p>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
                         <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">⭐</div>
-                            <div class="flex-1 space-y-1">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-bold text-lg leading-tight">EssentialsX</h4>
-                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v2.20</span>
-                                </div>
-                                <p class="text-xs opacity-50 leading-relaxed">The standard set of commands for every server.</p>
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⭐</div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">EssentialsX</h4>
+                                <p class="text-sm opacity-50 mt-1">Over 100 essential commands for servers.</p>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
                         <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">🛠️</div>
-                            <div class="flex-1 space-y-1">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-bold text-lg leading-tight">WorldEdit</h4>
-                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v7.3</span>
-                                </div>
-                                <p class="text-xs opacity-50 leading-relaxed">Fast and powerful in-game world editing tool.</p>
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🛠️</div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">WorldEdit</h4>
+                                <p class="text-sm opacity-50 mt-1">High-performance world editing tool.</p>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
                         <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">⚡</div>
-                            <div class="flex-1 space-y-1">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-bold text-lg leading-tight">Spark</h4>
-                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v1.10</span>
-                                </div>
-                                <p class="text-xs opacity-50 leading-relaxed">Diagnose performance issues and lag sources.</p>
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⚡</div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">Spark</h4>
+                                <p class="text-sm opacity-50 mt-1">Performance profiler for diagnosing lag.</p>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
                 </div>
-            </section>
-
+            </div>
         </div>
     </div>
 
-    <footer class="footer footer-center bg-base-100 text-primary-content p-4 absolute bottom-0 border-t border-white/5">
-        <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12">
-            <aside class="flex items-center gap-2">
-                <p class="font-bold text-sm">Seedloaf.</p>
+    <footer class="footer footer-center bg-base-100 text-primary-content rounded-sm p-2 absolute bottom-0">
+        <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12 px-6">
+            <aside class="hidden md:flex items-center gap-2">
+                <div class="text-start">
+                    <p class="font-bold">Seedloaf.</p>
+                    <p class="text-xs">Copyright © 2026 - All right reserved</p>
+                </div>
             </aside>
-            <nav class="flex gap-6 text-[11px] font-bold uppercase tracking-tighter opacity-40">
-                <a class="hover:text-primary cursor-pointer">Privacy Policy</a>
-                <a class="hover:text-primary cursor-pointer">Terms of Service</a>
-                <a class="hover:text-primary cursor-pointer">Refund Policy</a>
+            <nav class="mx-auto sm:mx-0 flex flex-col sm:grid grid-flow-col gap-4">
+                <a class="link link-hover" href="#">Privacy Policy</a>
+                <a class="link link-hover" href="#">Terms & Conditions</a>
+                <a class="link link-hover" href="#">Refund Policy</a>
             </nav>
         </div>
     </footer>
