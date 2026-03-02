@@ -8,14 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --b1: 25.33% 0.016 252.42; /* Exact base-100 */
-            --p: 58% 0.233 277.117;    /* Exact primary */
+            --b1: 25.33% 0.016 252.42; 
+            --p: 58% 0.233 277.117;    
         }
         body {
             background-color: oklch(var(--b1));
             color: oklch(97.807% 0.029 256.847);
         }
-        /* The specific layout from your snippet ensuring 336px sidebar */
         .grid-menu-layout {
             display: grid;
             grid-template-columns: 336px 1fr;
@@ -32,114 +31,98 @@
 <body class="min-h-screen relative">
 
     <div class="bg-base-100 absolute w-full">
-        <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6">
+        <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6 h-16">
             <a class="flex items-center" href="/dashboard">
-                <div class="w-16 h-16 flex items-center justify-center font-bold text-primary text-2xl">SL</div>
-                <h3 class="text-xl font-bold">Seedloaf</h3>
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-white mr-3">SL</div>
+                <h3 class="text-xl font-bold tracking-tight">Seedloaf</h3>
             </a>
-            <div class="hidden md:flex items-center gap-2">
-                <a href="#" class="btn btn-ghost text-primary">Status</a>
-                <a href="#" class="btn btn-ghost text-primary">Documentation</a>
-                <a href="#" class="btn btn-primary btn-outline">Discord</a>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#" class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity">Status</a>
+                <a href="#" class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity">Docs</a>
+                <a href="#" class="btn btn-sm btn-primary btn-outline">Discord</a>
             </div>
         </div>
     </div>
 
-    <div class="pt-20 pb-40 max-w-[1280px] mx-auto px-6">
-        <div class="py-12 grid-menu-layout">
+    <div class="pt-24 pb-40 max-w-[1280px] mx-auto px-6">
+        <div class="grid-menu-layout">
             
             <aside class="w-full">
-                <ul class="menu md:menu-vertical p-0 text-base gap-2 w-full">
-                    <li>
-                        <a href="/dashboard/console" class="py-3 flex items-center">
-                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/files" class="py-3 flex items-center">
-                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.625-1.2h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z"/></svg>
-                            File Manager
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/plugins" class="py-3 flex items-center bg-primary/10 text-primary font-bold">
-                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25"/></svg>
-                            Plugin Downloader
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/settings" class="py-3 flex items-center">
-                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281"/></svg>
-                            Settings
-                        </a>
-                    </li>
+                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full font-medium">
+                    <li><a href="/dashboard/console" class="py-3 px-4 rounded-lg">Dashboard</a></li>
+                    <li><a href="/dashboard/files" class="py-3 px-4 rounded-lg">File Manager</a></li>
+                    <li><a href="/dashboard/plugins" class="py-3 px-4 rounded-lg bg-primary/10 text-primary font-bold">Plugin Downloader</a></li>
+                    <li><a href="/dashboard/settings" class="py-3 px-4 rounded-lg text-error/70">Settings</a></li>
                 </ul>
-
-                <div class="mt-8 p-6 bg-base-200 rounded-xl border border-white/5">
-                    <p class="text-xs font-bold opacity-40 uppercase tracking-widest mb-4">Server Resources</p>
-                    <div class="space-y-4 font-mono text-sm">
-                        <div class="flex justify-between"><span>CPU</span><span class="text-primary">12%</span></div>
-                        <div class="flex justify-between"><span>RAM</span><span class="text-primary">2.4GB</span></div>
-                    </div>
-                </div>
             </aside>
 
-            <section class="space-y-6">
-                <div class="flex flex-col gap-2">
+            <section class="space-y-8">
+                <div class="flex flex-col gap-1">
                     <h2 class="text-3xl font-bold tracking-tight">Plugin Downloader</h2>
-                    <p class="opacity-50">Search and install plugins from Spigot and PaperMC.</p>
+                    <p class="text-sm opacity-50 font-medium">Browse and install plugins directly to your server.</p>
                 </div>
                 
-                <div class="join w-full bg-base-100 border border-white/10 rounded-xl overflow-hidden shadow-sm">
+                <div class="join w-full bg-base-200/50 border border-white/5 rounded-xl overflow-hidden shadow-sm">
                     <input type="text" placeholder="Search for plugins..." class="input input-ghost join-item w-full focus:bg-base-200 outline-none border-none" />
                     <button class="btn btn-primary join-item px-10">Search</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between min-h-[160px]">
-                        <div class="flex justify-between">
-                            <div class="space-y-1">
-                                <h4 class="font-bold text-lg">LuckPerms</h4>
-                                <p class="text-xs opacity-50">Advanced permissions management.</p>
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">🔑</div>
+                            <div class="flex-1 space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg leading-tight">LuckPerms</h4>
+                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v5.4</span>
+                                </div>
+                                <p class="text-xs opacity-50 leading-relaxed">Advanced permissions management with a web editor.</p>
                             </div>
-                            <div class="badge badge-primary badge-outline">Core</div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-4">Add Plugin</button>
+                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between min-h-[160px]">
-                        <div class="flex justify-between">
-                            <div class="space-y-1">
-                                <h4 class="font-bold text-lg">EssentialsX</h4>
-                                <p class="text-xs opacity-50">Essential commands for servers.</p>
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">⭐</div>
+                            <div class="flex-1 space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg leading-tight">EssentialsX</h4>
+                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v2.20</span>
+                                </div>
+                                <p class="text-xs opacity-50 leading-relaxed">The standard set of commands for every server.</p>
                             </div>
-                            <div class="badge badge-success badge-outline">Popular</div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-4">Add Plugin</button>
+                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between min-h-[160px]">
-                        <div class="flex justify-between">
-                            <div class="space-y-1">
-                                <h4 class="font-bold text-lg">WorldEdit</h4>
-                                <p class="text-xs opacity-50">High-performance world editing tool.</p>
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">🛠️</div>
+                            <div class="flex-1 space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg leading-tight">WorldEdit</h4>
+                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v7.3</span>
+                                </div>
+                                <p class="text-xs opacity-50 leading-relaxed">Fast and powerful in-game world editing tool.</p>
                             </div>
-                            <div class="badge badge-info badge-outline">Building</div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-4">Add Plugin</button>
+                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between min-h-[160px]">
-                        <div class="flex justify-between">
-                            <div class="space-y-1">
-                                <h4 class="font-bold text-lg">Spark</h4>
-                                <p class="text-xs opacity-50">Diagnose lag and monitor performance.</p>
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl border border-white/5">⚡</div>
+                            <div class="flex-1 space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg leading-tight">Spark</h4>
+                                    <span class="text-[10px] uppercase font-black opacity-30 tracking-widest">v1.10</span>
+                                </div>
+                                <p class="text-xs opacity-50 leading-relaxed">Diagnose performance issues and lag sources.</p>
                             </div>
-                            <div class="badge badge-warning badge-outline">Admin</div>
                         </div>
-                        <button class="btn btn-sm btn-primary w-full mt-4">Add Plugin</button>
+                        <button class="btn btn-sm btn-primary w-full mt-6">Add Plugin</button>
                     </div>
 
                 </div>
@@ -151,12 +134,12 @@
     <footer class="footer footer-center bg-base-100 text-primary-content p-4 absolute bottom-0 border-t border-white/5">
         <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12">
             <aside class="flex items-center gap-2">
-                <p class="font-bold">Seedloaf.</p>
-                <p class="text-xs opacity-40">Copyright © 2026</p>
+                <p class="font-bold text-sm">Seedloaf.</p>
             </aside>
-            <nav class="flex gap-4 text-xs opacity-60">
-                <a class="link link-hover">Privacy Policy</a>
-                <a class="link link-hover">Terms of Service</a>
+            <nav class="flex gap-6 text-[11px] font-bold uppercase tracking-tighter opacity-40">
+                <a class="hover:text-primary cursor-pointer">Privacy Policy</a>
+                <a class="hover:text-primary cursor-pointer">Terms of Service</a>
+                <a class="hover:text-primary cursor-pointer">Refund Policy</a>
             </nav>
         </div>
     </footer>
