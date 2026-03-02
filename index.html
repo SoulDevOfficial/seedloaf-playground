@@ -3,204 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seedloaf | Plugin Manager</title>
-    
+    <title>Seedloaf | Plugin Downloader</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Seedloaf Specific Design Tokens from your source code */
+        /* Exact color matches from your provided Seedloaf source */
         :root[data-theme="dark"] {
-            --color-base-100: oklch(25.33% .016 252.42);
-            --color-base-200: oklch(23.26% .014 253.1);
-            --color-base-300: oklch(21.15% .012 254.09);
-            --color-primary: oklch(58% .233 277.117);
-            --fx-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
+            --b1: 25.33% 0.016 252.42; /* base-100 */
+            --p: 58% 0.233 277.117;    /* primary */
+            --pc: 97.807% 0.029 256.847; /* primary-content */
         }
 
         body {
-            background-color: var(--color-base-100);
-            background-image: var(--fx-noise);
-            min-height: 100vh;
-            color: oklch(97.807% .029 256.847);
+            background-color: oklch(var(--b1));
+            color: oklch(97.807% 0.029 256.847);
         }
 
-        /* Subtle Glow for Primary Buttons to match Seedloaf */
-        .btn-primary {
-            box-shadow: 0 4px 14px 0 oklch(58% .233 277.117 / 0.39);
+        /* The Seedloaf specific 336px Sidebar Grid */
+        .md-menu-layout {
+            display: grid;
+            grid-template-columns: 336px 1fr;
+            gap: 1.25rem;
         }
 
-        .plugin-card:hover {
-            transform: translateY(-2px);
-            transition: all 0.2s ease-in-out;
+        .skeleton-custom {
+            background-color: oklch(23.26% 0.014 253.1);
+            border-radius: 0.5rem;
         }
     </style>
 </head>
-<body class="font-sans">
+<body class="min-h-screen relative">
 
-    <div class="navbar bg-base-100 border-b border-base-300 px-6">
-        <div class="flex-1">
-            <a class="flex items-center gap-2 group cursor-pointer">
-                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-primary-content">SL</div>
-                <span class="text-xl font-bold tracking-tight">Seedloaf</span>
-            </a>
-        </div>
-        <div class="flex-none gap-4">
-            <div class="badge badge-outline gap-2 p-3">
-                <div class="w-2 h-2 rounded-full bg-success animate-pulse"></div>
-                Server Online
+    <div class="bg-base-100 w-full border-b border-white/5">
+        <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6 h-16">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold">SL</div>
+                <h3 class="text-xl font-bold">Seedloaf</h3>
             </div>
-            <div class="avatar placeholder">
-                <div class="bg-neutral text-neutral-content rounded-full w-10">
-                    <span>JD</span>
+            <div class="hidden md:flex items-center gap-2">
+                <a href="#" class="btn btn-ghost text-primary">Status</a>
+                <a href="#" class="btn btn-ghost text-primary">Documentation</a>
+                <div class="avatar placeholder ml-4">
+                    <div class="bg-neutral text-neutral-content rounded-full w-8">
+                        <span>JD</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-10">
-        <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
+    <div class="pt-12 pb-40 max-w-[1280px] mx-auto px-6">
+        <div class="md-menu-layout">
             
-            <aside class="space-y-6">
-                <ul class="menu bg-base-200 rounded-box p-4 gap-2 border border-base-300">
-                    <li class="menu-title opacity-50 text-xs uppercase tracking-widest">Management</li>
-                    <li><a><span>📊</span> Console</a></li>
-                    <li><a><span>📂</span> File Manager</a></li>
-                    <li><a class="active bg-primary text-primary-content font-semibold"><span>🧩</span> Plugins</a></li>
-                    <li><a><span>⚙️</span> Settings</a></li>
-                    <div class="divider"></div>
-                    <li class="menu-title opacity-50 text-xs uppercase tracking-widest">Advanced</li>
-                    <li><a><span>🗄️</span> Databases</a></li>
-                    <li><a><span>⏰</span> Schedules</a></li>
+            <div class="space-y-4">
+                <ul class="menu bg-base-200/50 rounded-box p-0 text-base gap-1 w-full border border-white/5">
+                    <li><a class="py-3 flex items-center"><span>📊</span> Console</a></li>
+                    <li><a class="py-3 flex items-center"><span>📂</span> File Manager</a></li>
+                    <li><a class="py-3 flex items-center bg-primary/10 text-primary font-bold"><span>🧩</span> Plugin Downloader</a></li>
+                    <li><a class="py-3 flex items-center"><span>⚙️</span> Settings</a></li>
                 </ul>
-
-                <div class="card bg-base-300 p-4 border border-base-100 shadow-xl">
-                    <h4 class="text-xs font-bold opacity-70 mb-3">Storage Usage</h4>
-                    <progress class="progress progress-primary w-full" value="45" max="100"></progress>
-                    <p class="text-[10px] mt-2 opacity-50 font-mono text-right">4.5GB / 10GB</p>
+                
+                <div class="p-4 rounded-xl bg-base-200 border border-white/5 space-y-2">
+                    <p class="text-xs font-bold opacity-50 uppercase">Server Status</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-success"></div>
+                        <span class="text-sm font-mono">30d23ded...7f56c5c</span>
+                    </div>
                 </div>
-            </aside>
+            </div>
 
-            <main>
-                <header class="mb-8">
-                    <h1 class="text-3xl font-bold mb-2">Plugin Marketplace</h1>
-                    <p class="opacity-60">Easily find and install the most popular Spigot and Paper plugins.</p>
-                </header>
-
-                <div class="flex flex-col sm:flex-row gap-4 mb-8 bg-base-200 p-4 rounded-xl border border-base-300">
-                    <input type="text" placeholder="Search for a plugin..." class="input input-bordered grow bg-base-100" />
-                    <select class="select select-bordered bg-base-100 min-w-[150px]">
-                        <option disabled selected>Category</option>
-                        <option>Optimization</option>
-                        <option>Economy</option>
-                        <option>Security</option>
-                    </select>
-                    <button class="btn btn-primary">Search</button>
+            <div class="space-y-8 min-w-0">
+                
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-2xl font-bold">Plugin Downloader</h2>
+                    <div class="join w-full shadow-lg">
+                        <input class="input input-bordered join-item w-full bg-base-200 focus:outline-none border-white/10" placeholder="Search Spigot, Paper, or Bukkit plugins..."/>
+                        <button class="btn btn-primary join-item px-8">Search</button>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     
-                    <div class="card bg-base-200 border border-base-300 plugin-card">
-                        <div class="card-body p-6">
-                            <div class="flex gap-4">
-                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">⭐</div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <h2 class="card-title">EssentialsX</h2>
-                                        <div class="badge badge-success badge-sm">Free</div>
-                                    </div>
-                                    <p class="text-sm opacity-70 mt-1">Teleportation, kits, economy, and over 100 other commands for your server.</p>
+                    <div class="bg-base-200 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:border-primary/50 transition-all">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 rounded-lg bg-base-300 flex items-center justify-center text-2xl border border-white/5">🔑</div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold">LuckPerms</h3>
+                                    <span class="badge badge-primary badge-sm">Core</span>
                                 </div>
+                                <p class="text-sm opacity-60 mt-1">Advanced permissions management with web interface.</p>
                             </div>
-                            <div class="card-actions justify-between items-center mt-6">
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
-                                    <span class="text-xs font-mono">2.20.1</span>
-                                </div>
-                                <button class="btn btn-sm btn-primary px-6">Install</button>
-                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+                            <span class="text-[10px] font-mono opacity-40">v5.4.102</span>
+                            <button class="btn btn-xs btn-outline btn-primary">Download</button>
                         </div>
                     </div>
 
-                    <div class="card bg-base-200 border border-base-300 plugin-card">
-                        <div class="card-body p-6">
-                            <div class="flex gap-4">
-                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">🔑</div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <h2 class="card-title">LuckPerms</h2>
-                                        <div class="badge badge-primary badge-sm">Essential</div>
-                                    </div>
-                                    <p class="text-sm opacity-70 mt-1">The most advanced permission system with an easy-to-use web editor.</p>
+                    <div class="bg-base-200 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:border-primary/50 transition-all">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 rounded-lg bg-base-300 flex items-center justify-center text-2xl border border-white/5">⭐</div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold">EssentialsX</h3>
+                                    <span class="badge badge-success badge-sm">Popular</span>
                                 </div>
+                                <p class="text-sm opacity-60 mt-1">100+ essential commands for every Minecraft server.</p>
                             </div>
-                            <div class="card-actions justify-between items-center mt-6">
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Status</span>
-                                    <span class="text-xs font-mono text-success">Installed</span>
-                                </div>
-                                <button class="btn btn-sm btn-disabled opacity-50">Already Set Up</button>
-                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+                            <span class="text-[10px] font-mono opacity-40">v2.20.1</span>
+                            <button class="btn btn-xs btn-outline btn-primary">Download</button>
                         </div>
                     </div>
 
-                    <div class="card bg-base-200 border border-base-300 plugin-card">
-                        <div class="card-body p-6">
-                            <div class="flex gap-4">
-                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">🛠️</div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <h2 class="card-title">WorldEdit</h2>
-                                        <div class="badge badge-outline badge-sm">Builder</div>
-                                    </div>
-                                    <p class="text-sm opacity-70 mt-1">In-game map editor. Build, copy, and paste structures with ease.</p>
+                    <div class="bg-base-200 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:border-primary/50 transition-all">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 rounded-lg bg-base-300 flex items-center justify-center text-2xl border border-white/5">🛠️</div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold">WorldEdit</h3>
+                                    <span class="badge badge-info badge-sm">Utility</span>
                                 </div>
+                                <p class="text-sm opacity-60 mt-1">In-game world editor and building toolset.</p>
                             </div>
-                            <div class="card-actions justify-between items-center mt-6">
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
-                                    <span class="text-xs font-mono">7.2.14</span>
-                                </div>
-                                <button class="btn btn-sm btn-primary px-6">Install</button>
-                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+                            <span class="text-[10px] font-mono opacity-40">v7.3.0</span>
+                            <button class="btn btn-xs btn-outline btn-primary">Download</button>
                         </div>
                     </div>
 
-                    <div class="card bg-base-200 border border-base-300 plugin-card">
-                        <div class="card-body p-6">
-                            <div class="flex gap-4">
-                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">⚡</div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <h2 class="card-title">Spark</h2>
-                                        <div class="badge badge-warning badge-sm">Admin</div>
-                                    </div>
-                                    <p class="text-sm opacity-70 mt-1">Performance profiler to diagnose lag and find CPU-heavy plugins.</p>
+                    <div class="bg-base-200 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:border-primary/50 transition-all">
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 rounded-lg bg-base-300 flex items-center justify-center text-2xl border border-white/5">⚡</div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold">Spark</h3>
+                                    <span class="badge badge-warning badge-sm">Admin</span>
                                 </div>
+                                <p class="text-sm opacity-60 mt-1">Performance profiler to find lag sources.</p>
                             </div>
-                            <div class="card-actions justify-between items-center mt-6">
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
-                                    <span class="text-xs font-mono">1.10.32</span>
-                                </div>
-                                <button class="btn btn-sm btn-primary px-6">Install</button>
-                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+                            <span class="text-[10px] font-mono opacity-40">v1.10.32</span>
+                            <button class="btn btn-xs btn-outline btn-primary">Download</button>
                         </div>
                     </div>
 
                 </div>
-            </main>
+            </div>
         </div>
     </div>
 
-    <footer class="footer footer-center p-10 bg-base-100 text-base-content rounded mt-20">
-        <div class="grid grid-flow-col gap-4 opacity-60 text-sm">
-            <a class="link link-hover">Privacy Policy</a>
-            <a class="link link-hover">Terms of Service</a>
-            <a class="link link-hover">Documentation</a>
-        </div> 
-        <div>
-            <p>Copyright © 2026 - Seedloaf Free Minecraft Hosting</p>
+    <footer class="footer footer-center bg-base-100 text-primary-content p-4 absolute bottom-0 border-t border-white/5">
+        <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12">
+            <aside class="flex items-center gap-2">
+                <div class="font-bold">Seedloaf.</div>
+                <p class="text-xs opacity-50">Copyright © 2026</p>
+            </aside>
+            <nav class="flex gap-4 text-xs opacity-70">
+                <a class="link link-hover">Privacy Policy</a>
+                <a class="link link-hover">Terms of Service</a>
+            </nav>
         </div>
     </footer>
 
