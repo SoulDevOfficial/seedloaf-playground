@@ -4,177 +4,123 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Free Minecraft Servers | Seedloaf</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-        /* Exact Seedloaf Palette from your snippet */
         :root {
             --b1: 25.33% 0.016 252.42; /* base-100 */
             --p: 58% 0.233 277.117;    /* primary */
-            --bc: 97.807% 0.029 256.847; /* base-content */
         }
-
         body {
             background-color: oklch(var(--b1));
-            color: oklch(var(--bc));
-            min-height: 100vh;
-            position: relative;
+            color: oklch(97.807% 0.029 256.847);
         }
-
-        /* The specific layout variable used in your snippet */
-        .md-grid-cols-menu-layout {
+        /* The exact layout definition from your snippet */
+        .grid-menu-layout {
+            display: grid;
             grid-template-columns: 336px 1fr;
+            gap: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .grid-menu-layout {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="__className_f367f3">
+<body class="min-h-screen relative">
 
     <div class="bg-base-100 absolute w-full">
         <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6">
             <a class="flex items-center" href="/dashboard">
-                <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-xl mr-2">
-                    <span class="font-bold text-primary">SL</span>
+                <div class="w-16 h-16 flex items-center justify-center">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold">SL</div>
                 </div>
                 <h3 class="text-xl font-bold">Seedloaf</h3>
             </a>
             <div class="hidden md:flex items-center flex-none gap-2">
                 <ul class="menu menu-horizontal items-center px-1 space-x-2 hidden md:inline-flex">
-                    <li><a href="https://status.seedloaf.com/status/system" target="_blank" class="btn btn-ghost text-primary">Status</a></li>
-                    <li><a href="/documentation" target="_blank" class="btn btn-ghost text-primary">Documentation</a></li>
-                    <li><a href="/discord" target="_blank" class="btn p-2 btn-primary btn-outline">Discord</a></li>
+                    <li><a href="#" class="btn btn-ghost text-primary">Status</a></li>
+                    <li><a href="#" class="btn btn-ghost text-primary">Documentation</a></li>
+                    <li><a href="#" class="btn p-2 btn-primary btn-outline">Discord</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="pt-20 pb-40 md:pt-20 md:pb-60 max-w-[1280px] mx-auto px-6">
-        <div class="py-12 grid grid-cols-1 md:grid-cols-menu-layout gap-5" style="display: grid; grid-template-columns: 336px 1fr;">
+        <div class="py-12 grid-menu-layout">
             
-            <div class="space-y-4">
-                <ul class="menu menu-horizontal md:menu-vertical rounded-box p-0 text-base gap-1 w-full bg-base-200/30 border border-white/5">
+            <div data-sentry-component="Menu">
+                <ul class="menu menu-horizontal md:menu-vertical p-0 text-base gap-1 w-full">
                     <li>
                         <a href="/dashboard/console" class="py-2 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
-                            </svg>
+                            <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
                             Dashboard
                         </a>
                     </li>
                     <li>
                         <a href="/dashboard/files" class="py-2 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.625-1.2h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z" />
-                            </svg>
+                            <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.625-1.2h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z"/></svg>
                             File Manager
                         </a>
                     </li>
                     <li>
-                        <a href="/dashboard/plugins" class="py-2 flex items-center bg-primary/10 text-primary font-bold">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25" />
-                            </svg>
+                        <a href="/dashboard/plugins" class="py-2 flex items-center bg-primary/10 text-primary">
+                            <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25"/></svg>
                             Plugin Downloader
                         </a>
                     </li>
                     <li>
                         <a href="/dashboard/settings" class="py-2 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827" />
-                            </svg>
+                            <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281"/></svg>
                             Settings
                         </a>
                     </li>
+                    <div class="skeleton h-32 w-full mt-4 opacity-10"></div>
                 </ul>
-
-                <div class="skeleton h-32 w-full opacity-20"></div>
             </div>
 
             <div class="space-y-5">
-                <div class="p-6 rounded-xl bg-base-200 border border-white/5 space-y-4">
-                    <h2 class="text-2xl font-bold tracking-tight">Plugins</h2>
-                    <div class="join w-full shadow-sm">
-                        <input class="input input-bordered join-item w-full bg-base-100" placeholder="Search Spigot / Paper plugins..."/>
-                        <button class="btn btn-primary join-item px-8">Search</button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-5">
+                    <h2 class="text-2xl font-bold">Plugin Downloader</h2>
                     
-                    <div class="bg-base-200 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:border-primary/40 transition-all">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-base-300 rounded-lg flex items-center justify-center text-xl">⭐</div>
-                            <div>
-                                <h3 class="font-bold">EssentialsX</h3>
-                                <p class="text-xs opacity-50">Standard command suite for servers.</p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <span class="text-[10px] font-mono opacity-30">v2.20.1</span>
-                            <button class="btn btn-xs btn-primary btn-outline">Install</button>
-                        </div>
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="Search plugins..." class="input input-bordered w-full bg-base-100" />
+                        <button class="btn btn-primary">Search</button>
                     </div>
 
-                    <div class="bg-base-200 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:border-primary/40 transition-all">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-base-300 rounded-lg flex items-center justify-center text-xl">🔑</div>
-                            <div>
-                                <h3 class="font-bold">LuckPerms</h3>
-                                <p class="text-xs opacity-50">Advanced permissions management.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="skeleton h-32 flex flex-col p-5 justify-between bg-base-200/50">
+                            <div class="flex justify-between items-start">
+                                <span class="font-bold text-lg">LuckPerms</span>
+                                <div class="badge badge-primary">Core</div>
                             </div>
+                            <button class="btn btn-xs btn-primary btn-outline w-fit">Download</button>
                         </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <span class="text-[10px] font-mono opacity-30">v5.4.102</span>
-                            <button class="btn btn-xs btn-primary btn-outline">Install</button>
+                        <div class="skeleton h-32 flex flex-col p-5 justify-between bg-base-200/50">
+                            <div class="flex justify-between items-start">
+                                <span class="font-bold text-lg">EssentialsX</span>
+                                <div class="badge badge-success">Popular</div>
+                            </div>
+                            <button class="btn btn-xs btn-primary btn-outline w-fit">Download</button>
                         </div>
                     </div>
-
-                    <div class="bg-base-200 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:border-primary/40 transition-all">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-base-300 rounded-lg flex items-center justify-center text-xl">🛠️</div>
-                            <div>
-                                <h3 class="font-bold">WorldEdit</h3>
-                                <p class="text-xs opacity-50">In-game world editor toolset.</p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <span class="text-[10px] font-mono opacity-30">v7.3.0</span>
-                            <button class="btn btn-xs btn-primary btn-outline">Install</button>
-                        </div>
-                    </div>
-
-                    <div class="bg-base-200 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:border-primary/40 transition-all">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-base-300 rounded-lg flex items-center justify-center text-xl">⚡</div>
-                            <div>
-                                <h3 class="font-bold">Spark</h3>
-                                <p class="text-xs opacity-50">Performance profiling and lag fix.</p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <span class="text-[10px] font-mono opacity-30">v1.10.32</span>
-                            <button class="btn btn-xs btn-primary btn-outline">Install</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 
     <footer class="footer footer-center bg-base-100 text-primary-content rounded-sm p-2 absolute bottom-0">
         <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12">
             <aside class="hidden md:flex items-center gap-2">
-                <div class="text-start">
-                    <p class="font-bold">Seedloaf.</p>
-                    <p class="text-xs">Copyright © 2026 - All right reserved</p>
-                </div>
+                <p class="font-bold">Seedloaf.</p>
+                <p>Copyright © 2026 - All right reserved</p>
             </aside>
             <nav class="mx-auto sm:mx-0 flex flex-col sm:grid grid-flow-col gap-4">
-                <a class="link link-hover" href="/privacy-policy">Privacy Policy</a>
-                <a class="link link-hover" href="/terms-of-service">Terms & Conditions</a>
-                <a class="link link-hover" href="/refund-policy">Refund Policy</a>
+                <a class="link link-hover" href="#">Privacy Policy</a>
+                <a class="link link-hover" href="#">Terms & Conditions</a>
             </nav>
         </div>
     </footer>
