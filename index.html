@@ -8,20 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
+            /* Seedloaf Signature Colors */
             --b1: 25.33% 0.016 252.42; 
             --p: 58% 0.233 277.117;    
             --bc: 97.807% 0.029 256.847;
+            /* Darker shades for the "Selected" inset look */
+            --b2: 20% 0.016 252.42;
+            --b3: 15% 0.016 252.42;
         }
+
         body {
             background-color: oklch(var(--b1));
             color: oklch(var(--bc));
             font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         }
+
         .md-grid-cols-menu-layout {
             display: grid;
             grid-template-columns: 336px 1fr;
             gap: 1.25rem;
         }
+
+        /* The "Selected Tab" Inset Logic */
+        .sidebar-link {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            display: block;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover:not(.active-tab) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* This matches the "dark outline/inset" selected state */
+        .active-tab {
+            background-color: oklch(var(--b3)) !important; /* Darker than background */
+            color: oklch(var(--p)) !important; /* Primary text */
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle rim */
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3); /* The "pressed" look */
+            font-weight: 700;
+        }
+
         @media (max-width: 1024px) {
             .md-grid-cols-menu-layout {
                 grid-template-columns: 1fr;
@@ -31,18 +61,16 @@
 </head>
 <body class="min-h-screen relative">
 
-    <div class="bg-base-100 absolute w-full">
+    <div class="bg-base-100 border-b border-white/5 absolute w-full z-10">
         <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6 h-16">
             <a class="flex items-center" href="/dashboard">
                 <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-white mr-3">SL</div>
                 <h3 class="text-xl font-bold tracking-tight">Seedloaf</h3>
             </a>
-            <div class="hidden md:flex items-center flex-none gap-2">
-                <ul class="menu menu-horizontal items-center px-1 space-x-2">
-                    <li><a href="#" class="btn btn-ghost text-primary">Status</a></li>
-                    <li><a href="#" class="btn btn-ghost text-primary">Documentation</a></li>
-                    <li><a href="#" class="btn p-2 btn-primary btn-outline font-bold px-4">Discord</a></li>
-                </ul>
+            <div class="hidden md:flex items-center flex-none gap-4">
+                <a href="#" class="text-sm font-bold text-primary/80 hover:text-primary transition-colors">Status</a>
+                <a href="#" class="text-sm font-bold text-primary/80 hover:text-primary transition-colors">Documentation</a>
+                <a href="#" class="btn btn-sm btn-primary btn-outline px-6">Discord</a>
             </div>
         </div>
     </div>
@@ -50,74 +78,52 @@
     <div class="pt-20 pb-40 max-w-[1280px] mx-auto px-6">
         <div class="py-12 md-grid-cols-menu-layout">
             
-            <aside>
-                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full font-medium">
-                    <li><a href="/dashboard/console" class="py-2.5">Dashboard</a></li>
-                    <li><a href="/dashboard/files" class="py-2.5">World Settings</a></li>
-                    <li><a href="/dashboard/backups" class="py-2.5">Server Properties</a></li>
-                    <li><a href="/dashboard/network" class="py-2.5">Player Settings</a></li>
-                    <li><a href="/dashboard/startup" class="py-2.5">World & Backups</a></li>
-                    <li><a href="/dashboard/databases" class="py-2.5">File Manager</a></li>
-                    <li><a href="/dashboard/plugins" class="py-2.5 bg-primary/10 text-primary font-bold border-l-2 border-primary rounded-none">Plugin Downloader</a></li>
-                    <li><a href="/dashboard/schedules" class="py-2.5">World Logs</a></li>
-                    <li><a href="/dashboard/settings" class="py-2.5">Additional Ports</a></li>
-                    <li><a href="/dashboard/access" class="py-2.5">Access Management</a></li>
-                </ul>
+            <aside class="space-y-1">
+                <a href="/dashboard/console" class="sidebar-link">Dashboard</a>
+                <a href="/dashboard/files" class="sidebar-link">World Settings</a>
+                <a href="/dashboard/backups" class="sidebar-link">Server Properties</a>
+                <a href="/dashboard/network" class="sidebar-link">Player Settings</a>
+                <a href="/dashboard/startup" class="sidebar-link">World & Backups</a>
+                <a href="/dashboard/databases" class="sidebar-link">File Manager</a>
+                <a href="/dashboard/plugins" class="sidebar-link active-tab">Plugin Downloader</a>
+                <a href="/dashboard/schedules" class="sidebar-link">World Logs</a>
+                <a href="/dashboard/settings" class="sidebar-link">Additional Ports</a>
+                <a href="/dashboard/access" class="sidebar-link">Access Management</a>
             </aside>
 
-            <div class="space-y-8 min-w-0">
-                <div class="flex flex-col gap-4">
-                    <h2 class="text-2xl font-bold">Plugins</h2>
-                    <div class="join w-full bg-base-100 border border-white/5 rounded-xl">
-                        <input class="input input-ghost join-item w-full focus:outline-none" placeholder="Search for plugins..."/>
-                        <button class="btn btn-primary join-item px-10">Search</button>
-                    </div>
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-3xl font-black tracking-tight">Plugins</h2>
+                    <p class="text-sm opacity-40 mt-1">Manage and install extensions for your Minecraft server.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="join w-full shadow-2xl">
+                    <input class="input input-bordered join-item w-full bg-base-200/50 border-white/5 focus:outline-none" placeholder="Search for plugins..."/>
+                    <button class="btn btn-primary join-item px-12">Search</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
-                        <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🔑</div>
+                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-primary/20 transition-all group">
+                        <div class="flex gap-5">
+                            <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl border border-white/5 shadow-inner">🔑</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg">LuckPerms</h4>
-                                <p class="text-sm opacity-50 mt-1">Advanced permissions management system.</p>
+                                <h4 class="font-bold text-lg group-hover:text-primary transition-colors">LuckPerms</h4>
+                                <p class="text-xs opacity-50 mt-1 leading-relaxed line-clamp-2">The ultimate permissions plugin for Minecraft servers. Manage ranks and prefixes with ease.</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg font-bold">Install Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
-                        <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⭐</div>
+                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-primary/20 transition-all group">
+                        <div class="flex gap-5">
+                            <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl border border-white/5 shadow-inner">⭐</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg">EssentialsX</h4>
-                                <p class="text-sm opacity-50 mt-1">Essential commands for your server.</p>
+                                <h4 class="font-bold text-lg group-hover:text-primary transition-colors">EssentialsX</h4>
+                                <p class="text-xs opacity-50 mt-1 leading-relaxed line-clamp-2">A collection of 100+ essential commands and tools for any server type.</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
-                    </div>
-
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
-                        <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🛠️</div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-lg">WorldEdit</h4>
-                                <p class="text-sm opacity-50 mt-1">Powerful in-game world editing tool.</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
-                    </div>
-
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
-                        <div class="flex gap-4">
-                            <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⚡</div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-lg">Spark</h4>
-                                <p class="text-sm opacity-50 mt-1">Diagnose performance and lag issues.</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg font-bold">Install Plugin</button>
                     </div>
 
                 </div>
@@ -125,19 +131,17 @@
         </div>
     </div>
 
-    <footer class="footer footer-center bg-base-100 text-primary-content p-2 absolute bottom-0 border-t border-white/5">
-        <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12 px-6">
-            <aside class="hidden md:flex items-center gap-2">
-                <div class="text-start">
-                    <p class="font-bold">Seedloaf.</p>
-                    <p class="text-xs opacity-50">Copyright © 2026 - All right reserved</p>
-                </div>
-            </aside>
-            <nav class="mx-auto sm:mx-0 flex flex-col sm:grid grid-flow-col gap-6 text-sm font-medium">
-                <a class="link link-hover" href="#">Privacy Policy</a>
-                <a class="link link-hover" href="#">Terms & Conditions</a>
-                <a class="link link-hover" href="#">Refund Policy</a>
-            </nav>
+    <footer class="footer footer-center bg-base-100 p-6 absolute bottom-0 border-t border-white/5">
+        <div class="max-w-[1280px] flex justify-between items-center w-full">
+            <div class="text-left">
+                <p class="font-bold opacity-80">Seedloaf.</p>
+                <p class="text-[10px] uppercase tracking-widest opacity-30">© 2026 Management Console</p>
+            </div>
+            <div class="flex gap-6 text-xs font-bold opacity-40">
+                <a href="#" class="hover:text-primary hover:opacity-100">Privacy</a>
+                <a href="#" class="hover:text-primary hover:opacity-100">Terms</a>
+                <a href="#" class="hover:text-primary hover:opacity-100">Refunds</a>
+            </div>
         </div>
     </footer>
 
