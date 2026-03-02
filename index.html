@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedloaf | Plugin Manager</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Seedloaf Specific Design Tokens from your source code */
+        :root[data-theme="dark"] {
+            --color-base-100: oklch(25.33% .016 252.42);
+            --color-base-200: oklch(23.26% .014 253.1);
+            --color-base-300: oklch(21.15% .012 254.09);
+            --color-primary: oklch(58% .233 277.117);
+            --fx-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
+        }
+
+        body {
+            background-color: var(--color-base-100);
+            background-image: var(--fx-noise);
+            min-height: 100vh;
+            color: oklch(97.807% .029 256.847);
+        }
+
+        /* Subtle Glow for Primary Buttons to match Seedloaf */
+        .btn-primary {
+            box-shadow: 0 4px 14px 0 oklch(58% .233 277.117 / 0.39);
+        }
+
+        .plugin-card:hover {
+            transform: translateY(-2px);
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+    <div class="navbar bg-base-100 border-b border-base-300 px-6">
+        <div class="flex-1">
+            <a class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-primary-content">SL</div>
+                <span class="text-xl font-bold tracking-tight">Seedloaf</span>
+            </a>
+        </div>
+        <div class="flex-none gap-4">
+            <div class="badge badge-outline gap-2 p-3">
+                <div class="w-2 h-2 rounded-full bg-success animate-pulse"></div>
+                Server Online
+            </div>
+            <div class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content rounded-full w-10">
+                    <span>JD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
+            
+            <aside class="space-y-6">
+                <ul class="menu bg-base-200 rounded-box p-4 gap-2 border border-base-300">
+                    <li class="menu-title opacity-50 text-xs uppercase tracking-widest">Management</li>
+                    <li><a><span>📊</span> Console</a></li>
+                    <li><a><span>📂</span> File Manager</a></li>
+                    <li><a class="active bg-primary text-primary-content font-semibold"><span>🧩</span> Plugins</a></li>
+                    <li><a><span>⚙️</span> Settings</a></li>
+                    <div class="divider"></div>
+                    <li class="menu-title opacity-50 text-xs uppercase tracking-widest">Advanced</li>
+                    <li><a><span>🗄️</span> Databases</a></li>
+                    <li><a><span>⏰</span> Schedules</a></li>
+                </ul>
+
+                <div class="card bg-base-300 p-4 border border-base-100 shadow-xl">
+                    <h4 class="text-xs font-bold opacity-70 mb-3">Storage Usage</h4>
+                    <progress class="progress progress-primary w-full" value="45" max="100"></progress>
+                    <p class="text-[10px] mt-2 opacity-50 font-mono text-right">4.5GB / 10GB</p>
+                </div>
+            </aside>
+
+            <main>
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold mb-2">Plugin Marketplace</h1>
+                    <p class="opacity-60">Easily find and install the most popular Spigot and Paper plugins.</p>
+                </header>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-8 bg-base-200 p-4 rounded-xl border border-base-300">
+                    <input type="text" placeholder="Search for a plugin..." class="input input-bordered grow bg-base-100" />
+                    <select class="select select-bordered bg-base-100 min-w-[150px]">
+                        <option disabled selected>Category</option>
+                        <option>Optimization</option>
+                        <option>Economy</option>
+                        <option>Security</option>
+                    </select>
+                    <button class="btn btn-primary">Search</button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <div class="card bg-base-200 border border-base-300 plugin-card">
+                        <div class="card-body p-6">
+                            <div class="flex gap-4">
+                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">⭐</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <h2 class="card-title">EssentialsX</h2>
+                                        <div class="badge badge-success badge-sm">Free</div>
+                                    </div>
+                                    <p class="text-sm opacity-70 mt-1">Teleportation, kits, economy, and over 100 other commands for your server.</p>
+                                </div>
+                            </div>
+                            <div class="card-actions justify-between items-center mt-6">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
+                                    <span class="text-xs font-mono">2.20.1</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary px-6">Install</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-base-200 border border-base-300 plugin-card">
+                        <div class="card-body p-6">
+                            <div class="flex gap-4">
+                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">🔑</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <h2 class="card-title">LuckPerms</h2>
+                                        <div class="badge badge-primary badge-sm">Essential</div>
+                                    </div>
+                                    <p class="text-sm opacity-70 mt-1">The most advanced permission system with an easy-to-use web editor.</p>
+                                </div>
+                            </div>
+                            <div class="card-actions justify-between items-center mt-6">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Status</span>
+                                    <span class="text-xs font-mono text-success">Installed</span>
+                                </div>
+                                <button class="btn btn-sm btn-disabled opacity-50">Already Set Up</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-base-200 border border-base-300 plugin-card">
+                        <div class="card-body p-6">
+                            <div class="flex gap-4">
+                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">🛠️</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <h2 class="card-title">WorldEdit</h2>
+                                        <div class="badge badge-outline badge-sm">Builder</div>
+                                    </div>
+                                    <p class="text-sm opacity-70 mt-1">In-game map editor. Build, copy, and paste structures with ease.</p>
+                                </div>
+                            </div>
+                            <div class="card-actions justify-between items-center mt-6">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
+                                    <span class="text-xs font-mono">7.2.14</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary px-6">Install</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-base-200 border border-base-300 plugin-card">
+                        <div class="card-body p-6">
+                            <div class="flex gap-4">
+                                <div class="w-16 h-16 bg-neutral rounded-xl flex items-center justify-center text-3xl shadow-inner">⚡</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <h2 class="card-title">Spark</h2>
+                                        <div class="badge badge-warning badge-sm">Admin</div>
+                                    </div>
+                                    <p class="text-sm opacity-70 mt-1">Performance profiler to diagnose lag and find CPU-heavy plugins.</p>
+                                </div>
+                            </div>
+                            <div class="card-actions justify-between items-center mt-6">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] opacity-40 uppercase font-bold tracking-tighter">Version</span>
+                                    <span class="text-xs font-mono">1.10.32</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary px-6">Install</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer footer-center p-10 bg-base-100 text-base-content rounded mt-20">
+        <div class="grid grid-flow-col gap-4 opacity-60 text-sm">
+            <a class="link link-hover">Privacy Policy</a>
+            <a class="link link-hover">Terms of Service</a>
+            <a class="link link-hover">Documentation</a>
+        </div> 
+        <div>
+            <p>Copyright © 2026 - Seedloaf Free Minecraft Hosting</p>
+        </div>
+    </footer>
+
+</body>
+</html>
