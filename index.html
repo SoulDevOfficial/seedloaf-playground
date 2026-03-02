@@ -7,24 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Exact color variables from Seedloaf's RootLayout */
         :root {
-            --b1: 25.33% 0.016 252.42; /* base-100 */
-            --p: 58% 0.233 277.117;    /* primary */
-            --bc: 97.807% 0.029 256.847; /* base-content */
+            --b1: 25.33% 0.016 252.42; 
+            --p: 58% 0.233 277.117;    
+            --bc: 97.807% 0.029 256.847;
         }
         body {
             background-color: oklch(var(--b1));
             color: oklch(var(--bc));
             font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         }
-        /* The specific layout class used in your Loading snippet */
         .md-grid-cols-menu-layout {
             display: grid;
             grid-template-columns: 336px 1fr;
             gap: 1.25rem;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .md-grid-cols-menu-layout {
                 grid-template-columns: 1fr;
             }
@@ -43,35 +41,41 @@
                 <ul class="menu menu-horizontal items-center px-1 space-x-2">
                     <li><a href="#" class="btn btn-ghost text-primary">Status</a></li>
                     <li><a href="#" class="btn btn-ghost text-primary">Documentation</a></li>
-                    <li><a href="#" class="btn p-2 btn-primary btn-outline font-bold">Discord</a></li>
+                    <li><a href="#" class="btn p-2 btn-primary btn-outline font-bold px-4">Discord</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="pt-20 pb-40 md:pt-20 md:pb-60 max-w-[1280px] mx-auto px-6">
+    <div class="pt-20 pb-40 max-w-[1280px] mx-auto px-6">
         <div class="py-12 md-grid-cols-menu-layout">
             
             <aside>
-                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full">
-                    <li><a href="/dashboard/console" class="py-2 flex items-center">Dashboard</a></li>
-                    <li><a href="/dashboard/plugins" class="py-2 flex items-center bg-primary/10 text-primary font-bold">Plugin Downloader</a></li>
-                    <li><a href="/dashboard/settings" class="py-2 flex items-center">Settings</a></li>
+                <ul class="menu md:menu-vertical p-0 text-base gap-1 w-full font-medium">
+                    <li><a href="/dashboard/console" class="py-2.5">Dashboard</a></li>
+                    <li><a href="/dashboard/files" class="py-2.5">File Manager</a></li>
+                    <li><a href="/dashboard/plugins" class="py-2.5 bg-primary/10 text-primary font-bold border-l-2 border-primary rounded-none">Plugin Downloader</a></li>
+                    <li><a href="/dashboard/backups" class="py-2.5">Backups</a></li>
+                    <li><a href="/dashboard/network" class="py-2.5">Network</a></li>
+                    <li><a href="/dashboard/startup" class="py-2.5">Startup</a></li>
+                    <li><a href="/dashboard/databases" class="py-2.5">Databases</a></li>
+                    <li><a href="/dashboard/schedules" class="py-2.5">Schedules</a></li>
+                    <li><a href="/dashboard/settings" class="py-2.5">Settings</a></li>
                 </ul>
             </aside>
 
             <div class="space-y-8 min-w-0">
                 <div class="flex flex-col gap-4">
                     <h2 class="text-2xl font-bold">Plugins</h2>
-                    <div class="join w-full bg-base-100">
-                        <input class="input input-bordered join-item w-full bg-transparent focus:outline-none" placeholder="Search for plugins..."/>
-                        <button class="btn btn-primary join-item px-8">Search</button>
+                    <div class="join w-full bg-base-100 border border-white/5 rounded-xl">
+                        <input class="input input-ghost join-item w-full focus:outline-none" placeholder="Search for plugins..."/>
+                        <button class="btn btn-primary join-item px-10">Search</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
                         <div class="flex gap-4">
                             <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🔑</div>
                             <div class="flex-1">
@@ -82,34 +86,34 @@
                         <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
                         <div class="flex gap-4">
                             <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⭐</div>
                             <div class="flex-1">
                                 <h4 class="font-bold text-lg">EssentialsX</h4>
-                                <p class="text-sm opacity-50 mt-1">Over 100 essential commands for servers.</p>
+                                <p class="text-sm opacity-50 mt-1">Essential commands for your server.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
                         <div class="flex gap-4">
                             <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">🛠️</div>
                             <div class="flex-1">
                                 <h4 class="font-bold text-lg">WorldEdit</h4>
-                                <p class="text-sm opacity-50 mt-1">High-performance world editing tool.</p>
+                                <p class="text-sm opacity-50 mt-1">Powerful in-game world editing tool.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
                     </div>
 
-                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
+                    <div class="bg-base-200 p-6 rounded-xl border border-white/5 flex flex-col justify-between">
                         <div class="flex gap-4">
                             <div class="w-14 h-14 bg-base-300 rounded-xl flex items-center justify-center text-2xl">⚡</div>
                             <div class="flex-1">
                                 <h4 class="font-bold text-lg">Spark</h4>
-                                <p class="text-sm opacity-50 mt-1">Performance profiler for diagnosing lag.</p>
+                                <p class="text-sm opacity-50 mt-1">Diagnose performance and lag issues.</p>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-sm w-full mt-6">Add Plugin</button>
@@ -120,15 +124,15 @@
         </div>
     </div>
 
-    <footer class="footer footer-center bg-base-100 text-primary-content rounded-sm p-2 absolute bottom-0">
+    <footer class="footer footer-center bg-base-100 text-primary-content p-2 absolute bottom-0 border-t border-white/5">
         <div class="max-w-[1280px] flex justify-between items-center w-full min-h-12 px-6">
             <aside class="hidden md:flex items-center gap-2">
                 <div class="text-start">
                     <p class="font-bold">Seedloaf.</p>
-                    <p class="text-xs">Copyright © 2026 - All right reserved</p>
+                    <p class="text-xs opacity-50">Copyright © 2026 - All right reserved</p>
                 </div>
             </aside>
-            <nav class="mx-auto sm:mx-0 flex flex-col sm:grid grid-flow-col gap-4">
+            <nav class="mx-auto sm:mx-0 flex flex-col sm:grid grid-flow-col gap-6 text-sm font-medium">
                 <a class="link link-hover" href="#">Privacy Policy</a>
                 <a class="link link-hover" href="#">Terms & Conditions</a>
                 <a class="link link-hover" href="#">Refund Policy</a>
