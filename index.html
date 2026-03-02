@@ -10,52 +10,62 @@
         :root {
             --b1: 25.33% 0.016 252.42; 
             --p: 58% 0.233 277.117;    
-            --bc: 97.807% 0.029 256.847;
-            /* Darker shades for the "Selected" inset look */
+            --bc: 100% 0 0; /* Forced base content to pure white */
             --b2: 20% 0.016 252.42;
             --b3: 15% 0.016 252.42;
         }
 
         body {
             background-color: oklch(var(--b1));
-            color: oklch(var(--bc));
+            color: #ffffff; /* Global white text */
             font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Fixed sidebar width from original snippet logic */
+        /* Force all text elements to white to prevent clashing */
+        h1, h2, h3, h4, p, a, span, input, button, div {
+            color: #ffffff !important;
+        }
+
         .md-grid-cols-menu-layout {
             display: grid;
             grid-template-columns: 336px 1fr;
             gap: 1.25rem;
         }
 
+        /* Sidebar: Permanent White Text, No Gaps */
         .sidebar-link {
-            padding: 0.6rem 1rem;
+            padding: 0.7rem 1rem;
             transition: all 0.15s ease;
             display: block;
             font-size: 0.95rem;
-            /* Remove default gaps/margins */
             margin: 0 !important;
             border-radius: 0.5rem;
+            font-weight: 600;
         }
 
         .sidebar-link:hover:not(.active-tab) {
-            background-color: rgba(255, 255, 255, 0.04);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* The Inset Dark Outline look for the selected tab */
+        /* Active Tab: White text on Dark Blue Inset with Blue Accent */
         .active-tab {
             background-color: oklch(var(--b3)) !important;
-            color: oklch(var(--p)) !important;
-            box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
-            font-weight: 700;
+            box-shadow: inset 0 2px 10px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-left: 4px solid oklch(var(--p));
         }
 
-        /* Clean up the divider to match original snippet */
+        /* The requested line at the bottom */
         .divider {
             height: 1px;
-            background-color: rgba(255,255,255,0.05);
-            margin: 1.5rem 0;
+            background-color: rgba(255, 255, 255, 0.15);
+            margin: 2.5rem 0;
+            border: none;
+        }
+
+        /* Fix input placeholder color */
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
         }
 
         @media (max-width: 1024px) {
@@ -67,18 +77,16 @@
 </head>
 <body class="min-h-screen relative">
 
-    <div class="bg-base-100 absolute w-full z-10">
+    <div class="bg-base-100 absolute w-full z-10 border-b border-white/5">
         <div class="navbar justify-between items-center max-w-[1280px] m-auto px-6 h-16">
             <a class="flex items-center" href="/dashboard">
-                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold text-white mr-3">SL</div>
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center font-bold mr-3">SL</div>
                 <h3 class="text-xl font-bold tracking-tight">Seedloaf</h3>
             </a>
-            <div class="hidden md:flex items-center flex-none gap-2">
-                <ul class="menu menu-horizontal items-center px-1 space-x-2">
-                    <li><a href="#" class="btn btn-ghost text-primary">Status</a></li>
-                    <li><a href="#" class="btn btn-ghost text-primary">Documentation</a></li>
-                    <li><a href="#" class="btn p-2 btn-primary btn-outline font-bold">Discord</a></li>
-                </ul>
+            <div class="hidden md:flex items-center flex-none gap-8">
+                <a href="#" class="text-sm font-bold hover:text-primary transition-colors">Status</a>
+                <a href="#" class="text-sm font-bold hover:text-primary transition-colors">Documentation</a>
+                <a href="#" class="btn btn-primary btn-sm px-6 rounded-lg border-none">Discord</a>
             </div>
         </div>
     </div>
@@ -86,7 +94,7 @@
     <div class="pt-20 pb-40 max-w-[1280px] mx-auto px-6">
         <div class="py-12 md-grid-cols-menu-layout">
             
-            <aside class="flex flex-col">
+            <aside>
                 <nav class="flex flex-col">
                     <a href="#" class="sidebar-link">Dashboard</a>
                     <a href="#" class="sidebar-link">World Settings</a>
@@ -102,58 +110,54 @@
             </aside>
 
             <div class="space-y-6">
-                <div>
-                    <h2 class="text-3xl font-bold tracking-tight">Plugins</h2>
-                </div>
+                <h2 class="text-3xl font-bold tracking-tight">Plugins</h2>
 
-                <div class="divider"></div>
-
-                <div class="join w-full bg-base-100 rounded-xl overflow-hidden border border-white/5">
+                <div class="join w-full bg-base-200/40 rounded-xl overflow-hidden border border-white/10 shadow-lg">
                     <input class="input input-ghost join-item w-full focus:outline-none" placeholder="Search for plugins..."/>
-                    <button class="btn btn-primary join-item px-12">Search</button>
+                    <button class="btn btn-primary join-item px-12 border-none">Search</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4">
                     
-                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-colors">
+                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-all group">
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">🔑</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg">LuckPerms</h4>
-                                <p class="text-xs opacity-50 mt-1">Comprehensive permissions management for your server.</p>
+                                <h4 class="font-bold text-lg group-hover:underline">LuckPerms</h4>
+                                <p class="text-xs mt-1 leading-relaxed">Advanced permission management for server administrators.</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Install Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
                     </div>
 
-                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-colors">
+                    <div class="bg-base-200/50 p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:bg-base-200 transition-all group">
                         <div class="flex gap-5">
                             <div class="w-16 h-16 bg-base-300 rounded-xl flex items-center justify-center text-3xl shadow-inner border border-white/5">⭐</div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-lg">EssentialsX</h4>
-                                <p class="text-xs opacity-50 mt-1">Must-have commands and utilities for admins.</p>
+                                <h4 class="font-bold text-lg group-hover:underline">EssentialsX</h4>
+                                <p class="text-xs mt-1 leading-relaxed">The fundamental command and utility suite for Minecraft.</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm w-full mt-6">Install Plugin</button>
+                        <button class="btn btn-primary btn-sm w-full mt-6 rounded-lg border-none">Install Plugin</button>
                     </div>
 
                 </div>
+
+                <div class="divider"></div>
             </div>
         </div>
     </div>
 
-    <footer class="footer footer-center bg-base-100 p-4 absolute bottom-0 border-t border-white/5">
+    <footer class="footer footer-center bg-base-100 p-8 absolute bottom-0 border-t border-white/5">
         <div class="max-w-[1280px] flex justify-between items-center w-full px-6">
-            <aside class="flex items-center gap-2">
-                <div class="text-start">
-                    <p class="font-bold">Seedloaf.</p>
-                    <p class="text-[10px] opacity-30">Copyright © 2026 - All right reserved</p>
-                </div>
-            </aside>
-            <nav class="flex gap-6 text-xs font-medium opacity-50">
-                <a class="link link-hover" href="#">Privacy</a>
-                <a class="link link-hover" href="#">Terms</a>
-                <a class="link link-hover" href="#">Refunds</a>
+            <div class="text-left">
+                <p class="font-bold text-lg tracking-tight">Seedloaf.</p>
+                <p class="text-[10px] uppercase tracking-widest">High Performance Game Hosting</p>
+            </div>
+            <nav class="flex gap-8 text-xs font-bold uppercase tracking-widest">
+                <a class="hover:text-primary transition-colors" href="#">Privacy</a>
+                <a class="hover:text-primary transition-colors" href="#">Terms</a>
+                <a class="hover:text-primary transition-colors" href="#">Refunds</a>
             </nav>
         </div>
     </footer>
