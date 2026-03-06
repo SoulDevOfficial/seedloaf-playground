@@ -7,11 +7,57 @@
 
 <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-body{
-background:url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69abbb21&is=69aa69a1&hm=f9e2a2a70d3ec6af0123aa42977ba3ee312a91a7e02e98905c5c8c42cfc58ea5&") center/cover no-repeat fixed;
-font-family:Inter,Segoe UI,sans-serif
+body {
+  background: url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69abbb21&is=69aa69a1&hm=f9e2a2a70d3ec6af0123aa42977ba3ee312a91a7e02e98905c5c8c42cfc58ea5&") center/cover no-repeat fixed;
+  font-family: Inter, Segoe UI, sans-serif;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', cursive;
+  image-rendering: pixelated;
+}
+
+@keyframes glimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.glimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.glimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+}
+
+.glimmer-btn:hover::after {
+  animation: glimmer 1.2s ease-in-out;
+}
+
+.glimmer-btn:active::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: glimmer 0.5s ease-in-out; 
 }
 </style>
 
@@ -20,18 +66,21 @@ font-family:Inter,Segoe UI,sans-serif
 
 <div class="w-[290px] p-[22px] px-[16px] bg-[#0b1220]">
 
-<div class="text-[20px] font-semibold mb-[28px]">Seedloaf</div>
+<a href="#" class="flex items-center gap-3 mb-[28px] cursor-pointer">
+  <img src="site-logo.png" 
+       alt="Seedloaf Icon" 
+       class="w-[48px] h-[48px] block" 
+       style="image-rendering: pixelated;"/>
+  <span class="pixel-font text-[18px] leading-none text-white">Seedloaf</span>
+</a>
 
-<a class="block w-full text-[#7c8cff] bg-[#121a2b] py-[16px] px-[18px] rounded-[7px] text-[16px] mb-[10px]">
+<a class="block w-full text-[#7c8cff] bg-[#121a2b] py-[16px] px-[18px] rounded-[7px] text-[16px] mb-[10px] cursor-pointer">
 World List
 </a>
 
-<a class="block w-full text-[#cbd5f5] py-[16px] px-[18px] rounded-[7px] text-[16px] mb-[10px] hover:bg-[#121a2b]">
-Upgrade your Plan
-<span class="ml-[8px] text-white text-[11px] font-bold px-[8px] py-[4px] rounded-[6px]"
+<a class="glimmer-btn block w-full text-white py-[10px] px-[18px] rounded-[7px] text-[16px] mb-[10px] font-medium cursor-pointer"
 style="background:linear-gradient(90deg,#7c8cff,#ff4fd8)">
-PREMIUM
-</span>
+Upgrade your Plan
 </a>
 
 <div class="h-[1px] bg-[#1f2937] my-[20px]"></div>
