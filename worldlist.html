@@ -2,301 +2,154 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>World Settings</title>
+<title>World List</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,sans-serif}
-
-body{
-background:url("assets/background-main.png") center/cover no-repeat fixed;
-color:#e5e7eb;
-display:flex;
-height:100vh
-}
-
-.sidebar{
-width:250px;
-padding:28px 16px;
-background:#0b1220;
-flex-shrink: 0;
-}
-
-/* Updated Logo Styling */
-.logo-link {
-display: flex;
-align-items: center;
-gap: 12px;
-margin-bottom: 28px;
-text-decoration: none;
-cursor: pointer;
-}
-
-.logo-img {
-width: 48px;
-height: 48px;
-display: block;
-image-rendering: pixelated;
+body {
+  background: url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69abbb21&is=69aa69a1&hm=f9e2a2a70d3ec6af0123aa42977ba3ee312a91a7e02e98905c5c8c42cfc58ea5&") center/cover no-repeat fixed;
+  font-family: Inter, Segoe UI, sans-serif;
 }
 
 .pixel-font {
-font-family: 'Press Start 2P', cursive;
-font-size: 18px;
-color: #fff;
-line-height: 1;
+  font-family: 'Press Start 2P', cursive;
+  image-rendering: pixelated;
 }
 
-.sidebar a:not(.logo-link){
-display:block;
-color:#cbd5f5;
-text-decoration:none;
-padding:16px 18px;
-border-radius:8px;
-font-size:16px;
-margin-bottom:6px
+@keyframes glimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
 }
 
-.sidebar a:not(.logo-link):hover{background:#121a2b}
-.sidebar .active{background:#121a2b;color:#7c8cff}
-
-.main{
-flex:1;
-padding:36px 50px;
-overflow-y: auto;
+.glimmer-btn {
+  position: relative;
+  overflow: hidden;
 }
 
-/* top nav */
-
-.topnav{
-display:flex;
-justify-content:flex-end;
-gap:12px;
-margin-bottom:20px
+.glimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
 }
 
-.navbtn{
-background:#0b1220;
-border:1px solid #1f2937;
-color:#a5b4fc;
-font-size:13px;
-padding:8px 14px;
-border-radius:7px;
-cursor:pointer
+.glimmer-btn:hover::after {
+  animation: glimmer 1.2s ease-in-out;
 }
 
-.navbtn:hover{background:#121a2b}
-
-/* panel */
-
-.panel{
-background:rgba(11,18,32,.85);
-border:1px solid #1f2937;
-border-radius:10px;
-padding:28px;
-backdrop-filter:blur(6px)
-}
-
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px
-}
-
-h1{font-size:32px;font-weight:600}
-
-.actions{display:flex;gap:14px}
-
-.btn{
-padding:12px 22px;
-border-radius:8px;
-font-size:15px;
-cursor:pointer
-}
-
-.outline{
-background:transparent;
-border:1px solid #6366f1;
-color:#a5b4fc
-}
-
-.primary{
-background:#6366f1;
-border:none;
-color:#fff
-}
-
-.divider{
-height:1px;
-background:#1f2937;
-margin:22px 0
-}
-
-.section{
-font-size:18px;
-margin-bottom:20px
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:24px 36px;
-max-width:900px
-}
-
-.group{display:flex;flex-direction:column}
-
-label{
-font-size:13px;
-color:#cbd5f5;
-margin-bottom:6px
-}
-
-input,select{
-background:#020617;
-border:1px solid #2a3553;
-color:#fff;
-padding:12px 12px;
-border-radius:6px;
-font-size:14px
-}
-
-input:focus,select:focus{
-outline:none;
-border-color:#6366f1
-}
-
-.subdomain{display:flex}
-
-.subdomain input{
-border-top-right-radius:0;
-border-bottom-right-radius:0;
-border-right:none;
-flex:1
-}
-
-.suffix{
-background:#020617;
-border:1px solid #2a3553;
-border-left:none;
-padding:12px 12px;
-border-top-right-radius:6px;
-border-bottom-right-radius:6px;
-color:#94a3b8;
-font-size:14px
-}
-
-.save{margin-top:24px}
-
-@media(max-width:900px){
-.grid{grid-template-columns:1fr}
-.sidebar{display:none}
+.glimmer-btn:active::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: glimmer 0.5s ease-in-out; 
 }
 </style>
+
 </head>
+<body class="text-[#e5e7eb] flex h-screen">
 
-<body>
+<div class="w-[290px] p-[22px] px-[16px] bg-[#0b1220]">
 
-<div class="sidebar">
-
-<a href="#" class="logo-link">
-  <img src="assets/site-logo.png" alt="Seedloaf Icon" class="logo-img">
-  <span class="pixel-font">Seedloaf</span>
+<a href="#" class="flex items-center gap-3 mb-[28px] cursor-pointer">
+  <img src="site-logo.png" 
+       alt="Seedloaf Icon" 
+       class="w-[48px] h-[48px] block" 
+       style="image-rendering: pixelated;"/>
+  <span class="pixel-font text-[18px] leading-none text-white">Seedloaf</span>
 </a>
 
-<a href="#">Dashboard</a>
-<a href="#" class="active">World Settings</a>
-<a href="#">Server Properties</a>
-<a href="#">Player Settings</a>
-<a href="#">World & Backups</a>
-<a href="#">File Manager</a>
-<a href="#">World Logs</a>
-<a href="#">Additional Ports</a>
-<a href="#">Access Management</a>
+<a class="block w-full text-[#7c8cff] bg-[#121a2b] py-[16px] px-[18px] rounded-[7px] text-[16px] mb-[10px] cursor-pointer">
+World List
+</a>
+
+<a class="glimmer-btn block w-full text-white py-[10px] px-[18px] rounded-[7px] text-[16px] mb-[10px] font-medium cursor-pointer"
+style="background:linear-gradient(90deg,#7c8cff,#ff4fd8)">
+Upgrade your Plan
+</a>
+
+<div class="h-[1px] bg-[#1f2937] my-[20px]"></div>
 
 </div>
 
-<div class="main">
+<div class="flex-1 px-[36px] py-[26px]">
 
-<div class="topnav">
-<button class="navbtn">Status</button>
-<button class="navbtn">Documentation</button>
-<button class="navbtn">Discord</button>
+<div class="flex justify-end gap-[12px] mb-[20px]">
+
+<button class="bg-[#0b1220] border border-[#1f2937] text-[#a5b4fc] text-[13px] px-[14px] py-[8px] rounded-[7px] hover:bg-[#121a2b]">
+Status
+</button>
+
+<button class="bg-[#0b1220] border border-[#1f2937] text-[#a5b4fc] text-[13px] px-[14px] py-[8px] rounded-[7px] hover:bg-[#121a2b]">
+Documentation
+</button>
+
+<button class="bg-[#0b1220] border border-[#1f2937] text-[#a5b4fc] text-[13px] px-[14px] py-[8px] rounded-[7px] hover:bg-[#121a2b]">
+Discord
+</button>
+
 </div>
 
-<div class="panel">
+<div class="bg-[rgba(11,18,32,.92)] border border-[#1f2937] rounded-[10px] p-[22px] backdrop-blur max-w-[900px]">
 
-<div class="top">
-<h1>World Settings</h1>
+<h1 class="text-[26px] mb-[14px]">World List</h1>
 
-<div class="actions">
-<button class="btn outline">Back</button>
-<button class="btn primary">Start World</button>
-</div>
-</div>
+<div class="h-[1px] bg-[#1f2937] my-[14px]"></div>
 
-<div class="divider"></div>
+<div class="bg-[#0b1220] border border-[#1f2937] rounded-[9px] p-[18px]">
 
-<div class="section">World Details</div>
+<div class="flex justify-between items-center mb-[8px]">
 
-<div class="grid">
-
-<div class="group">
-<label>World Name</label>
-<input value="Example">
+<div>
+<div class="text-[#7c8cff] text-[16px] font-semibold">Example</div>
+<div class="text-[13px] text-[#cbd5f5]">Connection URL: example.sdlf.fun</div>
 </div>
 
-<div class="group">
-<label>Subdomain</label>
-<div class="subdomain">
-<input value="example">
-<div class="suffix">.sdlf.fun</div>
-</div>
-</div>
+<div class="flex gap-[10px]">
 
-<div class="group">
-<label>Server Type</label>
-<select>
-<option>Paper</option>
-<option>Spigot</option>
-<option>Vanilla</option>
-</select>
-</div>
+<button class="bg-transparent border border-[#6366f1] text-[#a5b4fc] text-[13px] px-[18px] py-[10px] rounded-[7px]">
+Manage World
+</button>
 
-<div class="group">
-<label>Server Version</label>
-<select>
-<option>Latest - keeps you up to date with the latest version</option>
-<option>1.21</option>
-<option>1.20.4</option>
-<option>1.19.4</option>
-</select>
-</div>
+<button class="bg-[#6366f1] text-white text-[13px] px-[18px] py-[10px] rounded-[7px]">
+Start World
+</button>
 
-<div class="group">
-<label>Server Timezone</label>
-<select>
-<option>America/New_York</option>
-<option>America/Chicago</option>
-<option>America/Los_Angeles</option>
-<option>UTC</option>
-</select>
-</div>
-
-<div class="group">
-<label>Java Version</label>
-<select>
-<option>Automatic - Chooses the correct version based on your...</option>
-<option>Java 21</option>
-<option>Java 17</option>
-<option>Java 8</option>
-</select>
 </div>
 
 </div>
 
-<button class="btn primary save">Save Changes</button>
+<div class="h-[1px] bg-[#1f2937] my-[14px]"></div>
+
+<div class="flex justify-between items-center mt-[10px]">
+
+<div class="text-[#ff5c5c] text-[13px]">Offline</div>
+<div class="text-[#facc15] text-[13px]">Additional RAM</div>
+
+</div>
+
+</div>
+
+<div class="mt-[18px]">
+<button class="bg-[#374151] text-[#9ca3af] text-[13px] px-[16px] py-[10px] rounded-[7px]">
+Create another world
+</button>
+</div>
 
 </div>
 
