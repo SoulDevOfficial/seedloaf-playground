@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <title>World Settings</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,sans-serif}
 
 body{
-background:url("assets/background-main.png") center/cover no-repeat fixed;
+background:url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69ab1261&is=69a9c0e1&hm=f43ebc8e7afa3c4ca66d1523956d8c5cb87b17cb1920b7ae50a9ed34f03249bb&") center/cover no-repeat fixed;
 color:#e5e7eb;
 display:flex;
 height:100vh
@@ -18,16 +19,35 @@ height:100vh
 .sidebar{
 width:250px;
 padding:28px 16px;
-background:#0b1220
+background:#0b1220;
+flex-shrink: 0;
 }
 
-.logo{
-font-size:20px;
-font-weight:600;
-margin-bottom:26px
+/* Updated Logo Styling */
+.logo-link {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 28px;
+text-decoration: none;
+cursor: pointer;
 }
 
-.sidebar a{
+.logo-img {
+width: 48px;
+height: 48px;
+display: block;
+image-rendering: pixelated;
+}
+
+.pixel-font {
+font-family: 'Press Start 2P', cursive;
+font-size: 18px;
+color: #fff;
+line-height: 1;
+}
+
+.sidebar a:not(.logo-link){
 display:block;
 color:#cbd5f5;
 text-decoration:none;
@@ -37,12 +57,13 @@ font-size:16px;
 margin-bottom:6px
 }
 
-.sidebar a:hover{background:#121a2b}
+.sidebar a:not(.logo-link):hover{background:#121a2b}
 .sidebar .active{background:#121a2b;color:#7c8cff}
 
 .main{
 flex:1;
-padding:36px 50px
+padding:36px 50px;
+overflow-y: auto;
 }
 
 /* top nav */
@@ -179,7 +200,10 @@ font-size:14px
 
 <div class="sidebar">
 
-<div class="logo">Seedloaf</div>
+<a href="#" class="logo-link">
+  <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6817172996bb8d7784e31030/0x0.png" alt="Seedloaf Icon" class="logo-img">
+  <span class="pixel-font">Seedloaf</span>
+</a>
 
 <a href="#">Dashboard</a>
 <a href="#" class="active">World Settings</a>
