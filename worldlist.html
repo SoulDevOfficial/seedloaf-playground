@@ -44,7 +44,27 @@ font-weight:700
 
 .main{flex:1;padding:26px 36px}
 
-.topnav{display:flex;justify-content:flex-end;gap:22px;margin-bottom:20px;font-size:13px;color:#a5b4fc}
+.topnav{
+display:flex;
+justify-content:flex-end;
+gap:12px;
+margin-bottom:20px
+}
+
+.topbtn{
+background:#0b1220;
+border:1px solid #1f2937;
+padding:8px 14px;
+border-radius:7px;
+font-size:13px;
+color:#a5b4fc;
+cursor:pointer;
+transition:.15s
+}
+
+.topbtn:hover{
+background:#121a2b
+}
 
 .panel{
 background:rgba(11,18,32,.92);
@@ -110,9 +130,9 @@ font-size:13px
 <div class="main">
 
 <div class="topnav">
-<div>Status</div>
-<div>Documentation</div>
-<div>Discord</div>
+<button class="topbtn">Status</button>
+<button class="topbtn">Documentation</button>
+<button class="topbtn">Discord</button>
 </div>
 
 <div class="panel">
