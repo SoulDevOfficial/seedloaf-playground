@@ -1,112 +1,151 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>World List</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet"/>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,sans-serif}
 body{
-background:url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69ab1261&is=69a9c0e1&hm=f43ebc8e7afa3c4ca66d1523956d8c5cb87b17cb1920b7ae50a9ed34f03249bb&") center/cover no-repeat fixed;
+background:url("https://cdn.discordapp.com/attachments/1256071149998047242/1479172648448688231/IiTmJ.png?ex=69abbb21&is=69aa69a1&hm=f9e2a2a70d3ec6af0123aa42977ba3ee312a91a7e02e98905c5c8c42cfc58ea5&") center/cover no-repeat fixed;
+color:#e5e7eb;
+display:flex;
+height:100vh
+}
+
+.sidebar{width:290px;padding:22px 16px;background:#0b1220}
+.logo{font-size:20px;font-weight:600;margin-bottom:28px}
+
+.sidebar a{
+display:block;
+width:100%;
+color:#cbd5f5;
+text-decoration:none;
+padding:16px 18px;
+border-radius:7px;
+font-size:16px;
+margin-bottom:10px
+}
+
+.sidebar a:hover{background:#121a2b}
+.sidebar a.active{background:#121a2b;color:#7c8cff}
+
+.badge{
+background:linear-gradient(90deg,#7c8cff,#ff4fd8);
+padding:4px 8px;
+border-radius:6px;
+font-size:11px;
+margin-left:8px;
+color:#fff;
+font-weight:700
+}
+
+.line{height:1px;background:#1f2937;margin:20px 0}
+
+.main{flex:1;padding:26px 36px}
+
+.topnav{display:flex;justify-content:flex-end;gap:22px;margin-bottom:20px;font-size:13px;color:#a5b4fc}
+
+.panel{
+background:rgba(11,18,32,.92);
+border:1px solid #1f2937;
+border-radius:10px;
+padding:22px;
+backdrop-filter:blur(6px);
+max-width:900px
+}
+
+h1{font-size:26px;margin-bottom:14px}
+
+.divider{height:1px;background:#1f2937;margin:14px 0}
+
+.world-card{
+background:#0b1220;
+border:1px solid #1f2937;
+border-radius:9px;
+padding:18px
+}
+
+.world-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+
+.world-name{color:#7c8cff;font-size:16px;font-weight:600}
+
+.connection{font-size:13px;color:#cbd5f5}
+
+.buttons{display:flex;gap:10px}
+
+.btn{padding:10px 18px;border-radius:7px;font-size:13px;cursor:pointer}
+
+.outline{background:transparent;border:1px solid #6366f1;color:#a5b4fc}
+.primary{background:#6366f1;border:none;color:#fff}
+
+.status-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+.offline{color:#ff5c5c;font-size:13px}
+.ram{color:#facc15;font-size:13px}
+
+.create{margin-top:18px}
+
+.create button{
+background:#374151;
+border:none;
+color:#9ca3af;
+padding:10px 16px;
+border-radius:7px;
+font-size:13px
 }
 </style>
-
 </head>
+<body>
 
-<body class="flex min-h-screen text-white">
+<div class="sidebar">
+<div class="logo">Seedloaf</div>
 
-<!-- SIDEBAR -->
-<div class="w-72 bg-base-200 p-6">
+<a href="#" class="active">World List</a>
+<a href="#">Upgrade your Plan <span class="badge">PREMIUM</span></a>
 
-<div class="text-xl font-semibold mb-6">Seedloaf</div>
+<div class="line"></div>
+</div>
 
-<ul class="menu text-base">
+<div class="main">
 
-<li>
-<a class="active text-white">World List</a>
-</li>
+<div class="topnav">
+<div>Status</div>
+<div>Documentation</div>
+<div>Discord</div>
+</div>
 
-<li>
-<a class="text-white">
-Upgrade your Plan
-<span class="badge badge-secondary font-bold text-white ml-2">PREMIUM</span>
-</a>
-</li>
+<div class="panel">
 
-</ul>
+<h1>World List</h1>
 
 <div class="divider"></div>
 
-</div>
+<div class="world-card">
 
-
-<!-- MAIN -->
-<div class="flex-1 p-8">
-
-<div class="flex justify-end gap-6 text-sm text-white mb-6">
-<a href="#">Status</a>
-<a href="#">Documentation</a>
-<a href="#">Discord</a>
-</div>
-
-
-<div class="card bg-base-200/90 backdrop-blur border border-base-300 max-w-3xl shadow-md">
-
-<div class="card-body p-4">
-
-<h1 class="text-xl font-semibold">World List</h1>
-
-<div class="divider my-2"></div>
-
-
-<!-- WORLD CARD -->
-
-<div class="card bg-base-100 border border-base-300">
-
-<div class="card-body p-4">
-
-<div class="flex justify-between items-center">
-
+<div class="world-top">
 <div>
-<div class="text-primary font-semibold">Example</div>
-<div class="text-sm opacity-80">Connection URL: example.sdlf.fun</div>
+<div class="world-name">Example</div>
+<div class="connection">Connection URL: example.sdlf.fun</div>
 </div>
 
-<div class="flex gap-2">
-
-<button class="btn btn-outline btn-sm text-white border-primary">
-Manage World
-</button>
-
-<button class="btn btn-primary btn-sm">
-Start World
-</button>
-
+<div class="buttons">
+<button class="btn outline">Manage World</button>
+<button class="btn primary">Start World</button>
+</div>
 </div>
 
-</div>
+<div class="divider"></div>
 
-<div class="divider my-2"></div>
-
-<div class="flex justify-between text-sm">
-
-<span class="text-error">Offline</span>
-<span class="text-warning">Additional RAM</span>
-
+<div class="status-row">
+<div class="offline">Offline</div>
+<div class="ram">Additional RAM</div>
 </div>
 
 </div>
 
-</div>
-
-
-<button class="btn btn-outline btn-sm mt-3 border-base-300 text-white hover:bg-base-300/20">
-Create another world
-</button>
-
+<div class="create">
+<button>Create another world</button>
 </div>
 
 </div>
